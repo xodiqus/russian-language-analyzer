@@ -76,6 +76,7 @@ namespace RussianLanguageAnalyzer
   Noun::operator std::string() const
   {
     using namespace Morphology;
+
     std::string r = _root;
     if ((_case == Case::nominative || _case == Case::accusative) && _count == Count::single && _gender == Gender::n)
     {
@@ -83,5 +84,10 @@ namespace RussianLanguageAnalyzer
     }
 
     return r;
+  }
+
+  void Noun::set(Morphology::Case c)
+  {
+    _case = c;
   }
 }

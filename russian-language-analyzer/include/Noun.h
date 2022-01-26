@@ -16,6 +16,11 @@ namespace RussianLanguageAnalyzer
     Morphology::Gender _gender;
 
   public:
+    Noun(std::string root, Morphology::Case case_)
+      : _root(root), _case(case_)
+    {
+    }
+
     Noun(std::string root, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
       : _root(root), _case(case_), _count(count), _gender(gender)
     {
@@ -32,5 +37,7 @@ namespace RussianLanguageAnalyzer
     std::optional<Relation> relates(Word const&) const override;
 
     operator std::string() const override;
+
+    void set(Morphology::Case);
   };
 }

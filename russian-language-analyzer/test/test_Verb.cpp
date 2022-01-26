@@ -6,6 +6,8 @@
 using namespace RussianLanguageAnalyzer;
 using namespace Morphology;
 
+BOOST_AUTO_TEST_SUITE(VerbTests);
+
 BOOST_AUTO_TEST_CASE(constructor)
 {
   auto verb = Verb("делаю");
@@ -14,3 +16,5 @@ BOOST_AUTO_TEST_CASE(constructor)
   BOOST_TEST((verb.person() == Person::first));
   BOOST_TEST((verb.tense() == Tense::present));
 }
+
+BOOST_AUTO_TEST_SUITE_END();

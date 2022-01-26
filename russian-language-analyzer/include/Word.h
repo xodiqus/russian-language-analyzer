@@ -30,5 +30,10 @@ namespace RussianLanguageAnalyzer
     virtual operator std::string() const = 0;
 
     std::unique_ptr<Word> _child;
+
+    bool operator ==(std::string_view) const;
+    friend  bool operator ==(std::string_view, Word const&);
   };
+
+
 }
