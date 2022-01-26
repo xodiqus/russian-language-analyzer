@@ -21,15 +21,24 @@ namespace RussianLanguageAnalyzer
 
   std::vector<std::unique_ptr<Noun>> Noun::createVariations(std::string_view s)
   {
+    using namespace Morphology;
+
     std::vector<std::unique_ptr<Noun>> r;
 
     if (s.ends_with("ие"))
     {
-      using namespace Morphology;
       auto root = s.substr(0, s.length() - 2);
-      r.emplace_back(new Noun(std::string(root), Case::accusative, Count::single, Gender::n));
-
       r.emplace_back(new Noun(std::string(root), Case::nominative, Count::single, Gender::n));
+
+      r.emplace_back(new Noun(std::string(root), Case::accusative, Count::single, Gender::n));
+    }
+
+    if (s.ends_with("о"))
+    {
+      auto root = s.substr(0, s.length() - 1);
+      r.emplace_back(new Noun(std::string(root), Case::nominative, Count::single, Gender::n));
+
+      r.emplace_back(new Noun(std::string(root), Case::accusative, Count::single, Gender::n));
     }
 
     return r;

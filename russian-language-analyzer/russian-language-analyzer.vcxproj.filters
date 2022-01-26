@@ -13,65 +13,77 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы тестов">
+      <UniqueIdentifier>{c61f7bb5-2e99-4632-beb3-feaf1146a6cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="source/Adjective.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Word.cpp">
+    <ClCompile Include="source/Adverb.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Noun.cpp">
+    <ClCompile Include="source/main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
+    <ClCompile Include="source/Noun.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Sentence.cpp">
+    <ClCompile Include="source/Pronoun.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Adjective.cpp">
+    <ClCompile Include="source/Sentence.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Pronoun.cpp">
+    <ClCompile Include="source/ShortAdjective.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Verb.cpp">
+    <ClCompile Include="source/Utils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Adverb.cpp">
+    <ClCompile Include="source/Verb.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ShortAdjective.cpp">
+    <ClCompile Include="source/Word.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="test/test_Noun.cpp">
+      <Filter>Файлы тестов</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test_Verb.cpp">
+      <Filter>Файлы тестов</Filter>
+    </ClCompile>
+    <ClCompile Include="test\main.cpp">
+      <Filter>Файлы тестов</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Word.h">
+    <ClInclude Include="include/Adjective.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Noun.h">
+    <ClInclude Include="include/Adverb.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
+    <ClInclude Include="include/Noun.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Sentence.h">
+    <ClInclude Include="include/Pronoun.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Adjective.h">
+    <ClInclude Include="include/Sentence.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Pronoun.h">
+    <ClInclude Include="include/ShortAdjective.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Verb.h">
+    <ClInclude Include="include/Utils.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Adverb.h">
+    <ClInclude Include="include/Verb.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ShortAdjective.h">
+    <ClInclude Include="include/Word.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

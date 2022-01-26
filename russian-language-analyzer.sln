@@ -7,16 +7,31 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "russian-language-analyzer",
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_UnitTests|Win32 = Debug_UnitTests|Win32
+		Debug_UnitTests|x64 = Debug_UnitTests|x64
+		Debug_UnitTests|x86 = Debug_UnitTests|x86
+		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug_UnitTests|Win32.ActiveCfg = Debug_UnitTests|x64
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug_UnitTests|Win32.Build.0 = Debug_UnitTests|x64
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug_UnitTests|x64.ActiveCfg = Debug_UnitTests|x64
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug_UnitTests|x64.Build.0 = Debug_UnitTests|x64
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug_UnitTests|x86.ActiveCfg = Debug_UnitTests|Win32
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug_UnitTests|x86.Build.0 = Debug_UnitTests|Win32
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug|Win32.Build.0 = Debug|Win32
 		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug|x64.ActiveCfg = Debug|x64
 		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug|x64.Build.0 = Debug|x64
 		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug|x86.ActiveCfg = Debug|Win32
 		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Debug|x86.Build.0 = Debug|Win32
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Release|Win32.ActiveCfg = Release|Win32
+		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Release|Win32.Build.0 = Release|Win32
 		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Release|x64.ActiveCfg = Release|x64
 		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Release|x64.Build.0 = Release|x64
 		{2A9BFBC2-096A-46D9-A18D-A0A2C12205F2}.Release|x86.ActiveCfg = Release|Win32
