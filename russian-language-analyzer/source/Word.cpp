@@ -2,13 +2,23 @@
 
 namespace RussianLanguageAnalyzer
 { 
-  bool Word::operator==(std::string_view s) const
+  bool operator==(Word const& w, std::string_view s)
   {
-    return this->operator std::string() == s;
+    return !(s != w);
   }
 
   bool operator ==(std::string_view s, Word const& w)
   {
-    return w == s;
+    return !(s != w);
+  }
+
+  bool operator!=(std::string_view s, Word const& w)
+  {
+      return static_cast<std::string>(w) != s;
+  }
+
+  bool operator!=(Word const& w, std::string_view s)
+  {
+    return s != w;
   }
 }

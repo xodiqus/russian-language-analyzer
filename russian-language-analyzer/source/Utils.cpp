@@ -1,4 +1,12 @@
+#include <assert.h>
+
 #include "Utils.h"
+
+#include "Noun.h"
+
+
+namespace RussianLanguageAnalyzer
+{
 
 namespace Utils
 {
@@ -16,68 +24,96 @@ namespace Utils
     r.emplace_back(s);
 
     return r;
-  }  
+  }
+}
 
-  std::ostream& operator <<(std::ostream& out, RussianLanguageAnalyzer::Morphology::Case c)
+namespace Morphology
+{
+  std::string_view to_string(Case c)
   {
-    using namespace RussianLanguageAnalyzer::Morphology;
-
     switch (c)
     {
-    case Case::nominative: out << "именительный"; break;
-    case Case::accusative: out << "винительный"; break;
+    case Case::nominative: return "именительный"; 
+    case Case::accusative: return "винительный"; 
     }
 
-    return out;
+    assert(false);
+    return "";
   }
 
-  std::ostream& operator <<(std::ostream& out, RussianLanguageAnalyzer::Morphology::Person p)
+  std::string_view to_string(Person p)
   {
-    using namespace RussianLanguageAnalyzer::Morphology;
-
     switch (p)
     {
-    case Person::first: out << "1-ое"; break;
-
+    case Person::first: return "1-ое";
     }
 
-    return out;
+    assert(false);
+    return "";
   }
 
-  std::ostream& operator <<(std::ostream& out, RussianLanguageAnalyzer::Morphology::Count c)
+  std::string_view to_string(Count c)
   {
-    using namespace RussianLanguageAnalyzer::Morphology;
-
     switch (c)
     {
-    case Count::single: out << "единственное"; break;
-    case Count::plural: out << "множественное"; break;
+    case Count::single: return "единственное"; 
+    case Count::plural: return "множественное"; 
     }
 
-    return out;
+    assert(false);
+    return "";
   }
 
-  std::ostream& operator <<(std::ostream& out, RussianLanguageAnalyzer::Morphology::Gender g)
+  std::string_view to_string(Gender g)
   {
-    using namespace RussianLanguageAnalyzer::Morphology;
-
     switch (g)
     {
-    case Gender::n: out << "средний"; break;
+    case Gender::n: return "средний"; 
     }
 
-    return out;
+    assert(false);
+    return "";
   }
 
-  std::ostream& operator <<(std::ostream& out, RussianLanguageAnalyzer::Morphology::Tense t)
+  std::string_view to_string(Tense t)
   {
-    using namespace RussianLanguageAnalyzer::Morphology;
-
     switch (t)
     {
-    case Tense::present: out << "настоящие"; break;
+    case Tense::present: return "настоящие"; 
     }
 
-    return out;
+    assert(false);
+    return "";
+  }
+
+  std::ostream& operator <<(std::ostream& out, Case c)
+  {
+    return out << to_string(c);
+  }
+
+  std::ostream& operator <<(std::ostream& out, Person p)
+  {
+    return out << to_string(p);
+  }
+
+  std::ostream& operator <<(std::ostream& out, Count c)
+  {
+    return out << to_string(c);
+  }
+
+  std::ostream& operator <<(std::ostream& out, Gender g)
+  {
+    return out << to_string(g);
+  }
+
+  std::ostream& operator <<(std::ostream& out, Tense t)
+  {
+    return out << to_string(t);
+  }
+}
+
+  std::ostream& operator<<(std::ostream& out, Word const& w)
+  {
+    return out << static_cast<std::string>(w);
   }
 }

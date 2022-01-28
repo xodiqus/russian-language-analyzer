@@ -16,7 +16,6 @@
 int main()
 {
   using namespace RussianLanguageAnalyzer;
-  using Utils::operator<<;
 
   std::setlocale(LC_ALL, "");
 
@@ -26,27 +25,27 @@ int main()
 
   {
     auto w = dynamic_cast<Pronoun const*>(s.subject());
-    std::cout << "Подлежащие: " << (std::string)*w
+    std::cout << "Подлежащие: " << *w
               << " (лицо: " << w->person() << ", число: " << w->count() << ", падеж: " << w->case_() << ")" << std::endl;
   }
   {
     auto w = dynamic_cast<Verb const*>(s.predicate());
-    std::cout << "Сказуемое: " << (std::string)*w
+    std::cout << "Сказуемое: " << *w
               << " (время: " << w->tense() << ", лицо: " << w->person() << ", число: " << w->count() << ")" << std::endl;
   }
   {
     auto w = dynamic_cast<Noun const*>(s.object());
-    std::cout << "Дополнение: " << (std::string)*w
+    std::cout << "Дополнение: " << *w
       << " (род: " << w->gender() << ", число: " << w->count() << ", падеж: " << w->case_() << ")" << std::endl;
   }
   {
     auto w = dynamic_cast<Adjective const*>(s.object()->_child.get());
-    std::cout << "Определение: " << (std::string)*w
+    std::cout << "Определение: " << *w
       << " (род: " << w->gender() << ", число: " << w->count() << ", падеж: " << w->case_() << ")" << std::endl;
   }
   {
     auto w = dynamic_cast<Adverb const*>(s.predicate()->_child.get());
-    std::cout << "Обстоятельство: " << (std::string)*w << std::endl;
+    std::cout << "Обстоятельство: " << *w << std::endl;
   }
 
   return 0;

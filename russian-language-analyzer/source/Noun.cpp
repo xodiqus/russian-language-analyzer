@@ -1,4 +1,7 @@
+
 #include <memory>
+#include <map>
+#include <assert.h>
 
 #include "Noun.h"
 #include "Verb.h"
@@ -7,8 +10,43 @@
 
 #include "Utils.h"
 
+
 namespace RussianLanguageAnalyzer
 {
+  Noun::Noun()
+  {
+  }
+
+  Noun::Noun(Noun const& n)
+    :_word(n._word), _case(n._case), _count(n._count), _gender(_gender)
+  {
+  }
+
+  Noun::Noun(Noun &&n)
+    : _word(std::move(n._word)), _case(n._case), _count(n._count), _gender(_gender)
+  {
+  }
+
+  Noun& Noun::operator=(Noun const& n)
+  {
+    _word = n._word;
+    _case = n._case;
+    _count = n._count;
+    _gender = n._gender;
+
+    return *this;
+  }
+
+  Noun& Noun::operator=(Noun &&n)
+  {
+    _word = std::move(n._word);
+    _case = n._case;
+    _count = n._count;
+    _gender = n._gender;
+
+    return *this;
+  }
+
   bool Noun::maybe(std::string_view s)
   {
     if (s.ends_with("ие"))
@@ -27,18 +65,16 @@ namespace RussianLanguageAnalyzer
 
     if (s.ends_with("ие"))
     {
-      auto root = s.substr(0, s.length() - 2);
-      r.emplace_back(new Noun(std::string(root), Case::nominative, Count::single, Gender::n));
+      r.emplace_back(new Noun(std::string(s), Case::nominative, Count::single, Gender::n));
 
-      r.emplace_back(new Noun(std::string(root), Case::accusative, Count::single, Gender::n));
+      r.emplace_back(new Noun(std::string(s), Case::accusative, Count::single, Gender::n));
     }
 
     if (s.ends_with("о"))
     {
-      auto root = s.substr(0, s.length() - 1);
-      r.emplace_back(new Noun(std::string(root), Case::nominative, Count::single, Gender::n));
+      r.emplace_back(new Noun(std::string(s), Case::nominative, Count::single, Gender::n));
 
-      r.emplace_back(new Noun(std::string(root), Case::accusative, Count::single, Gender::n));
+      r.emplace_back(new Noun(std::string(s), Case::accusative, Count::single, Gender::n));
     }
 
     return r;
@@ -77,13 +113,75 @@ namespace RussianLanguageAnalyzer
   {
     using namespace Morphology;
 
-    std::string r = _root;
-    if ((_case == Case::nominative || _case == Case::accusative) && _count == Count::single && _gender == Gender::n)
+    std::string r;
+    std::map<Case, const char*> const* ends = nullptr;
+
+    switch (count())
     {
-      r += "ие";
+    case Count::single:
+    {
+      switch (gender())
+      {
+        case Gender::n:
+          if (bool o_end = _word.ends_with("о"))
+          {
+            if (o_end)
+              r = _word.substr(0, _word.length() - 1);
+            else
+              r = _word;
+
+            static const std::map<Case, const char*> e{
+              { Case::nominative,     "о" },
+              { Case::genitive,       "а" },
+              { Case::dative,         "у" },
+              { Case::accusative,     "о" },
+              { Case::instrumental,   "ом" },
+              { Case::prepositional,  "е" },
+            };
+
+            ends = &e;
+          }
+          else if (_word.ends_with("ие"))
+          {
+            r = _word.substr(0, _word.length() - 2);
+
+            static const std::map<Case, const char*> e{
+              { Case::nominative,      "ие" },
+              { Case::genitive,        "ия" },
+              { Case::dative,          "ию" },
+              { Case::accusative,      "ие" },
+              { Case::instrumental,    "ием" },
+              { Case::prepositional,   "ии" },
+            };
+
+            ends = &e;
+          }
+          break;
+
+        case Gender::m:
+        {
+          r = _word;
+
+          static const std::map<Case, const char*> e{
+              { Case::nominative,     "" },
+              { Case::genitive,       "а" },
+              { Case::dative,         "у" },
+              { Case::accusative,     "" },
+              { Case::instrumental,   "ом" },
+              { Case::prepositional,  "е" },
+          };
+
+          ends = &e;
+        }
+      }
+    }
+    case Count::plural:
+      break;
     }
 
-    return r;
+    assert(ends != nullptr);
+
+    return r + ends->find(case_())->second;
   }
 
   void Noun::set(Morphology::Case c)

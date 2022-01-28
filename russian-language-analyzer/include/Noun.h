@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <ostream>
 
 #include "Word.h"
 
@@ -9,20 +10,23 @@ namespace RussianLanguageAnalyzer
 {
   class Noun : public Word
   {
-    std::string _root;
+    std::string _word;
 
     Morphology::Case _case;
     Morphology::Count _count;
     Morphology::Gender _gender;
 
   public:
-    Noun(std::string root, Morphology::Case case_)
-      : _root(root), _case(case_)
-    {
-    }
+    Noun();
 
-    Noun(std::string root, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
-      : _root(root), _case(case_), _count(count), _gender(gender)
+    Noun(Noun     &&);
+    Noun(Noun const& n);
+
+    Noun& operator=(Noun     &&);
+    Noun& operator=(Noun const&);
+
+    Noun(std::string word, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
+      : _word(word), _case(case_), _count(count), _gender(gender)
     {
     }
 
@@ -38,6 +42,8 @@ namespace RussianLanguageAnalyzer
 
     operator std::string() const override;
 
+    void set(Morphology::Gender) = delete;
     void set(Morphology::Case);
   };
+
 }
