@@ -57,6 +57,9 @@
     <ClCompile Include="test\main.cpp">
       <Filter>Файлы тестов</Filter>
     </ClCompile>
+    <ClCompile Include="test\test_Sentence.cpp">
+      <Filter>Файлы тестов</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include/Adjective.h">
