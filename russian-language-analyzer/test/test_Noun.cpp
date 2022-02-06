@@ -4,8 +4,6 @@
 #include "Noun.h"
 #include "Utils.h"
 
-#include <iostream>
-
 using namespace RussianLanguageAnalyzer;
 using namespace Morphology;
 
