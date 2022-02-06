@@ -17,12 +17,16 @@ namespace RussianLanguageAnalyzer
 
     ShortAdjective(std::string_view word);
 
-    std::optional<Relation> relates(Word const&) const override;
+    std::optional<Relation> relates(Noun const& w) const override;
+    std::optional<Relation> relates(Adjective const& w) const override;
+    std::optional<Relation> relates(Pronoun  const& w) const override;
 
     Morphology::Count count() const { return _count; }
     Morphology::Gender gender() const { return _gender; }
 
     operator std::string() const override;
+
+    std::type_info const& get_typeid() const override;
   };
 
 }

@@ -38,7 +38,12 @@ namespace RussianLanguageAnalyzer
 
     static std::vector<std::unique_ptr<Noun>> createVariations(std::string_view s);
 
-    std::optional<Relation> relates(Word const&) const override;
+    std::optional<Relation> relates(Verb const&) const override;
+    std::optional<Relation> relates(ShortAdjective const& v) const override;
+
+  public:
+
+    std::type_info const& get_typeid() const override;
 
     operator std::string() const override;
 

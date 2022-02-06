@@ -4,7 +4,6 @@
 
 namespace RussianLanguageAnalyzer
 {
-
   class Adverb : public Word
   {
     std::string _word;
@@ -14,9 +13,11 @@ namespace RussianLanguageAnalyzer
 
     static bool maybe(std::string_view word);
 
-    std::optional<Relation> relates(Word const&) const override;
+    std::optional<Relation> relates(Verb const&) const override;
 
     operator std::string() const override;
+
+    std::type_info const& get_typeid() const override;
   };
 }
 

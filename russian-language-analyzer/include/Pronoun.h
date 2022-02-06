@@ -31,7 +31,9 @@ namespace RussianLanguageAnalyzer
 
     static std::vector<std::unique_ptr<Pronoun>> createVariations(std::string_view s);
 
-    std::optional<Relation> relates(Word const&) const override;
+    std::optional<Relation> relates(Verb const&) const override;
+    std::optional<Relation> relates(Adjective const&) const override;
+    std::optional<Relation> relates(ShortAdjective const&) const override;
 
     Morphology::Count  count() const  { return _count; }
     Morphology::Gender gender() const { return _gender; }
@@ -39,6 +41,8 @@ namespace RussianLanguageAnalyzer
     Morphology::Person person() const { return _person; }
 
     operator std::string() const override;
+
+    std::type_info const& get_typeid() const override;
   };
 
 }

@@ -21,21 +21,18 @@ namespace RussianLanguageAnalyzer
     return false;
   }
  
-  std::optional<Relation> Adverb::relates(Word const& w) const
+  std::optional<Relation> Adverb::relates(Verb const& w) const
   {
-    using namespace Morphology;
-    using Utils::equal;
-
-    if (auto v = dynamic_cast<Verb const*>(&w))
-    {
-      return Relation::circumstance;
-    }
-
-    return std::nullopt;
+    return Relation::circumstance;
   }
 
   Adverb::operator std::string() const
   {
     return _word;
+  }
+
+  std::type_info const& Adverb::get_typeid() const
+  {
+    return typeid(Adverb);
   }
 }

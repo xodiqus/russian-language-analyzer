@@ -6,6 +6,8 @@
 
 #include "Word.h"
 
+#include "Utils.h"
+
 namespace RussianLanguageAnalyzer
 {
   class Verb : public Word
@@ -28,7 +30,8 @@ namespace RussianLanguageAnalyzer
 
     static std::vector<std::unique_ptr<Verb>> createVariations(std::string_view s);
 
-    std::optional<Relation> relates(Word const&) const override;
+    std::optional<Relation> relates(Noun const&) const override;
+    std::optional<Relation> relates(Pronoun const& p) const override;
 
     Morphology::Count count() const { return _count; }
     Morphology::Gender gender() const { return _gender; }
@@ -36,6 +39,8 @@ namespace RussianLanguageAnalyzer
     Morphology::Tense tense() const { return _tense; }
 
     operator std::string() const override;
+
+    std::type_info const& get_typeid() const override;
   };
 }
 

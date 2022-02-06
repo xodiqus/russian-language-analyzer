@@ -30,34 +30,15 @@ namespace RussianLanguageAnalyzer
     return false;
   }
   
-  std::optional<Relation> Pronoun::relates(Word const& w) const
+  std::optional<Relation> Pronoun::relates(Verb const& v) const 
   {
     using namespace Morphology;
     using Utils::equal;
 
-    if (auto v = dynamic_cast<Verb const*>(&w))
+    if (equal<Count, Person>(this, &v))
     {
-      if (equal<Count, Person>(this, v))
-      {
-        if (this->person() == Person::third && equal<Gender>(this, v)
-         || this->person() != Person::third)
-        {
-          return Relation::subject;
-        }
-      }
-    }
-
-    if (auto a = dynamic_cast<Adjective const*>(&w))
-    {
-      if (equal<Count, Gender>(this, a) && this->case_() == Case::nominative && a->case_() == Case::nominative)
-      {
-        return Relation::subject;
-      }
-    }
-
-    if (auto h = dynamic_cast<ShortAdjective const*>(&w))
-    {
-      if (equal<Count, Gender>(this, h))
+      if (this->person() == Person::third && equal<Gender>(this, &v)
+        || this->person() != Person::third)
       {
         return Relation::subject;
       }
@@ -66,8 +47,39 @@ namespace RussianLanguageAnalyzer
     return std::nullopt;
   }
 
+  std::optional<Relation> Pronoun::relates(Adjective const& a) const 
+  {
+    using namespace Morphology;
+    using Utils::equal;
+
+    if (equal<Count, Gender>(this, &a) && this->case_() == Case::nominative && a.case_() == Case::nominative)
+    {
+      return Relation::subject;
+    }
+
+    return std::nullopt;
+  }
+
+  std::optional<Relation> Pronoun::relates(ShortAdjective const& h) const 
+  {
+    using namespace Morphology;
+    using Utils::equal;
+  
+    if (equal<Count, Gender>(this, &h))
+    {
+      return Relation::subject;
+    }
+
+    return std::nullopt;
+  }
+
   Pronoun::operator std::string() const
   {
     return _word; 
+  }
+
+  std::type_info const& Pronoun::get_typeid() const
+  {
+    return typeid(Pronoun);
   }
 }

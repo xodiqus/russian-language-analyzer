@@ -40,25 +40,27 @@ namespace RussianLanguageAnalyzer
     return false;
   }
 
-  std::optional<Relation> Verb::relates(Word const& w) const
+  std::optional<Relation> Verb::relates(Pronoun const& p) const
   {
     using Utils::equal;
     using namespace Morphology;
 
-    if (auto p = dynamic_cast<Pronoun const*>(&w))
+    if (equal<Count, Person>(this, &p))
     {
-      if (equal<Count, Person>(this, p))
-      {
-        return Relation::predicate;
-      }
+      return Relation::predicate;
     }
 
-    if (auto n = dynamic_cast<Noun const*>(&w))
+    return std::nullopt;
+  }
+
+  std::optional<Relation> Verb::relates(Noun const& n) const
+  {
+    using namespace Utils;
+    using namespace Morphology;
+
+    if (n.case_() == Case::accusative)
     {
-      if (n->case_() == Case::accusative)
-      {
-        return Relation::predicate;
-      }
+      return Relation::predicate;
     }
 
     return std::nullopt;
@@ -75,5 +77,10 @@ namespace RussianLanguageAnalyzer
     }
 
     return r;
+  }
+
+  std::type_info const& Verb::get_typeid() const
+  {
+    return typeid(Verb);
   }
 }

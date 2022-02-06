@@ -6,6 +6,13 @@
 
 namespace RussianLanguageAnalyzer
 {
+  class Noun;
+  class Adjective;
+  class ShortAdjective;
+  class Verb;
+  class Adverb;
+  class Pronoun;
+
   namespace Morphology
   {
     enum class Case { nominative, dative, accusative, instrumental, prepositional, genitive };
@@ -25,9 +32,18 @@ namespace RussianLanguageAnalyzer
 
     virtual ~Word() {}
 
-    virtual std::optional<Relation> relates(Word const&) const = 0;
+            std::optional<Relation> relates(Word            const&) const;
+
+    virtual std::optional<Relation> relates(Noun            const&) const;
+    virtual std::optional<Relation> relates(Verb            const&) const;
+    virtual std::optional<Relation> relates(Adjective       const&) const;
+    virtual std::optional<Relation> relates(Adverb          const&) const;
+    virtual std::optional<Relation> relates(ShortAdjective  const&) const;
+    virtual std::optional<Relation> relates(Pronoun         const&) const;
 
     virtual operator std::string() const = 0;
+
+    virtual std::type_info const& get_typeid() const = 0;
 
     std::unique_ptr<Word> _child;
   };

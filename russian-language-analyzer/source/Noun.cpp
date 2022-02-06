@@ -80,34 +80,37 @@ namespace RussianLanguageAnalyzer
     return r;
   }
 
-  std::optional<Relation> Noun::relates(Word const& w) const
+  std::optional<Relation> Noun::relates(ShortAdjective const& h) const
   {
+    using namespace Utils;
     using namespace Morphology;
-    using Utils::equal;
 
-    if (auto v = dynamic_cast<Verb const*>(&w))
+    if (equal<Count, Gender>(this, &h))
     {
-      if (equal<Count>(this, v) && this->case_() == Case::nominative && v->person() == Person::third)
-      {
-        return Relation::subject;
-      }
-
-      if (this->case_() == Case::accusative)
-      {
-        return Relation::object;
-      }
-    }
-
-    if (auto h = dynamic_cast<ShortAdjective const*>(&w))
-    {
-      if (equal<Count, Gender>(this, h))
-      {
-        return Relation::subject;
-      }
+      return Relation::subject;
     }
 
     return std::nullopt;
   }
+
+  std::optional<Relation> Noun::relates(Verb const& v) const
+  {
+    using namespace Utils;
+    using namespace Morphology;
+
+    if (equal<Count>(&v, this) && this->case_() == Case::nominative && v.person() == Person::third)
+    {
+      return Relation::subject;
+    }
+
+    if (this->case_() == Case::accusative)
+    {
+      return Relation::object;
+    }
+
+    return std::nullopt;
+  }
+
 
   Noun::operator std::string() const
   {
@@ -187,5 +190,10 @@ namespace RussianLanguageAnalyzer
   void Noun::set(Morphology::Case c)
   {
     _case = c;
+  }
+
+  std::type_info const& Noun::get_typeid() const 
+  { 
+    return typeid(Noun);
   }
 }
