@@ -12,7 +12,6 @@ namespace RussianLanguageAnalyzer
 {
   class Verb : public Word
   {
-    std::string _infinitive;
     Morphology::Count _count;
     Morphology::Tense _tense;
     // For Past, Future:

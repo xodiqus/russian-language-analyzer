@@ -10,15 +10,13 @@ namespace RussianLanguageAnalyzer
 {
   class Adjective : public Word
   {
-    std::string _root;
-
     Morphology::Case _case;
     Morphology::Gender _gender;
     Morphology::Count _count;
 
   public:
-    Adjective(std::string root, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
-      : _root(root), _case(case_), _count(count), _gender(gender)
+    Adjective(std::string baseForm, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
+      : Word(baseForm), _case(case_), _count(count), _gender(gender)
     {
     }
 

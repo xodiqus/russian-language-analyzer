@@ -18,18 +18,18 @@ namespace RussianLanguageAnalyzer
   }
 
   Noun::Noun(Noun const& n)
-    :_word(n._word), _case(n._case), _count(n._count), _gender(_gender)
+    : Word(n.baseForm()), _case(n._case), _count(n._count), _gender(_gender)
   {
   }
 
   Noun::Noun(Noun &&n)
-    : _word(std::move(n._word)), _case(n._case), _count(n._count), _gender(_gender)
+    : Word(std::move(n.baseForm())), _case(n._case), _count(n._count), _gender(_gender)
   {
   }
 
   Noun& Noun::operator=(Noun const& n)
   {
-    _word = n._word;
+    baseForm() = n.baseForm();
     _case = n._case;
     _count = n._count;
     _gender = n._gender;
@@ -39,7 +39,7 @@ namespace RussianLanguageAnalyzer
 
   Noun& Noun::operator=(Noun &&n)
   {
-    _word = std::move(n._word);
+    baseForm() = std::move(n.baseForm());
     _case = n._case;
     _count = n._count;
     _gender = n._gender;
@@ -126,12 +126,12 @@ namespace RussianLanguageAnalyzer
       switch (gender())
       {
         case Gender::n:
-          if (bool o_end = _word.ends_with("о"))
+          if (bool o_end = baseForm().ends_with("о"))
           {
             if (o_end)
-              r = _word.substr(0, _word.length() - 1);
+              r = baseForm().substr(0, baseForm().length() - 1);
             else
-              r = _word;
+              r = baseForm();
 
             static const std::map<Case, const char*> e{
               { Case::nominative,     "о" },
@@ -144,9 +144,9 @@ namespace RussianLanguageAnalyzer
 
             ends = &e;
           }
-          else if (_word.ends_with("ие"))
+          else if (baseForm().ends_with("ие"))
           {
-            r = _word.substr(0, _word.length() - 2);
+            r = baseForm().substr(0, baseForm().length() - 2);
 
             static const std::map<Case, const char*> e{
               { Case::nominative,      "ие" },
@@ -163,7 +163,7 @@ namespace RussianLanguageAnalyzer
 
         case Gender::m:
         {
-          r = _word;
+          r = baseForm();
 
           static const std::map<Case, const char*> e{
               { Case::nominative,     "" },

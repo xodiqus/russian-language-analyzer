@@ -10,8 +10,6 @@ namespace RussianLanguageAnalyzer
 {
   class Noun : public Word
   {
-    std::string _word;
-
     Morphology::Case _case;
     Morphology::Count _count;
     Morphology::Gender _gender;
@@ -25,8 +23,8 @@ namespace RussianLanguageAnalyzer
     Noun& operator=(Noun     &&);
     Noun& operator=(Noun const&);
 
-    Noun(std::string word, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
-      : _word(word), _case(case_), _count(count), _gender(gender)
+    Noun(std::string baseForm, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
+      : Word(baseForm), _case(case_), _count(count), _gender(gender)
     {
     }
 

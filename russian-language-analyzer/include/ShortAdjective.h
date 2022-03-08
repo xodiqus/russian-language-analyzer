@@ -8,7 +8,6 @@ namespace RussianLanguageAnalyzer
 
   class ShortAdjective : public Word
   {
-    std::string _root;
     Morphology::Gender _gender;
     Morphology::Count _count;
     

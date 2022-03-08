@@ -6,8 +6,6 @@ namespace RussianLanguageAnalyzer
 {
   class Adverb : public Word
   {
-    std::string _word;
-
   public:
     Adverb(std::string_view word);
 

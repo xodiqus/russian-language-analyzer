@@ -25,7 +25,7 @@ namespace RussianLanguageAnalyzer
     {
       _gender = Gender::n;
       _count = Count::single;
-      _root = w.substr(0, w.length() - 1);
+      baseForm() = w.substr(0, w.length() - 1);
     }
   }
  
@@ -69,7 +69,7 @@ namespace RussianLanguageAnalyzer
   ShortAdjective::operator std::string() const
   {
     using namespace Morphology;
-    std::string r = _root;
+    std::string r = baseForm();
 
     if (_count == Count::single && _gender == Gender::n)
     {

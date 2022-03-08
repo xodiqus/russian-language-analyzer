@@ -13,7 +13,7 @@ namespace RussianLanguageAnalyzer
 
     if (s.ends_with("аю"))
     {
-      _infinitive = std::string(s.substr(0, s.length() - 1)) + "ть";
+      baseForm() = std::string(s.substr(0, s.length() - 1)) + "ть";
       _person = Person::first;
       _count = Count::single;
       _tense = Tense::present;
@@ -69,7 +69,7 @@ namespace RussianLanguageAnalyzer
   Verb::operator std::string() const
   {
     using namespace Morphology;
-    std::string r = _infinitive.substr(0, _infinitive.length() - 2);
+    std::string r = baseForm().substr(0, baseForm().length() - 2);
 
     if (_person == Person::first && _count == Count::single && _tense == Tense::present)
     {

@@ -75,7 +75,7 @@ namespace RussianLanguageAnalyzer
     Adjective::operator std::string() const
     {
       using namespace Morphology;
-      std::string r = _root;
+      std::string r = baseForm();
       if ((_case == Case::nominative || _case == Case::accusative) && _count == Count::single && _gender == Gender::n)
       {
         r += "ее";

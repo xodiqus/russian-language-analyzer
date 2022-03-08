@@ -8,7 +8,7 @@
 
 namespace RussianLanguageAnalyzer
 {
-  Pronoun::Pronoun(std::string_view p) : _word(p)
+  Pronoun::Pronoun(std::string_view p) : Word(p)
   {
     using namespace Morphology;
 
@@ -75,7 +75,7 @@ namespace RussianLanguageAnalyzer
 
   Pronoun::operator std::string() const
   {
-    return _word; 
+    return baseForm();
   }
 
   std::type_info const& Pronoun::get_typeid() const

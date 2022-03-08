@@ -11,17 +11,14 @@ namespace RussianLanguageAnalyzer
 
   class Pronoun : public Word
   {
-    std::string _word;
-
     Morphology::Gender _gender;
     Morphology::Count _count;
     Morphology::Case _case;
     Morphology::Person _person;
 
   public:
-
-    Pronoun(std::string root, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
-      : _word(root), _case(case_), _count(count), _gender(gender)
+    Pronoun(std::string baseForm, Morphology::Case case_, Morphology::Count count, Morphology::Gender gender)
+      : Word(baseForm), _case(case_), _count(count), _gender(gender)
     {
     }
 

@@ -2,7 +2,7 @@
 
 #include <optional>
 #include <memory>
-#include <string>
+#include <string_view>
 
 namespace RussianLanguageAnalyzer
 {
@@ -11,7 +11,7 @@ namespace RussianLanguageAnalyzer
   class ShortAdjective;
   class Verb;
   class Adverb;
-  class Pronoun;
+  class Pronoun; 
 
   namespace Morphology
   {
@@ -27,10 +27,14 @@ namespace RussianLanguageAnalyzer
 
   class Word
   {
+  private:
+    std::string _baseForm;
+
   public:
     Word(Word* w = nullptr) : _child(w) {  }
+    Word(std::string_view baseForm) noexcept;
 
-    virtual ~Word() {}
+    virtual ~Word() noexcept = default;
 
             std::optional<Relation> relates(Word            const&) const;
 
@@ -40,6 +44,12 @@ namespace RussianLanguageAnalyzer
     virtual std::optional<Relation> relates(Adverb          const&) const;
     virtual std::optional<Relation> relates(ShortAdjective  const&) const;
     virtual std::optional<Relation> relates(Pronoun         const&) const;
+
+  protected:
+    std::string&       baseForm() noexcept;
+
+  public:
+    std::string const& baseForm() const noexcept;
 
     virtual operator std::string() const = 0;
 

@@ -37,6 +37,11 @@ namespace RussianLanguageAnalyzer
     return s != w;
   }
 
+  Word::Word(std::string_view baseForm) noexcept
+    : _baseForm(baseForm) 
+  {
+  }
+
   std::optional<Relation> Word::relates(Word const& w) const
   {
     using f = std::function <std::optional<Relation> (Word const*, Word const*)>;
@@ -71,4 +76,13 @@ namespace RussianLanguageAnalyzer
   std::optional<Relation> Word::relates(Adverb          const&) const { return std::nullopt; }
   std::optional<Relation> Word::relates(ShortAdjective  const&) const { return std::nullopt; }
   std::optional<Relation> Word::relates(Pronoun         const&) const { return std::nullopt; }
+  
+  std::string& Word::baseForm() noexcept
+  {
+    return _baseForm;
+  }
+  std::string const& Word::baseForm() const noexcept
+  {
+    return _baseForm;
+  }
 }

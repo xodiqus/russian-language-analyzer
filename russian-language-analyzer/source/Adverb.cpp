@@ -5,8 +5,8 @@
 
 namespace RussianLanguageAnalyzer
 {
-  Adverb::Adverb(std::string_view word)
-    : _word(word)
+  Adverb::Adverb(std::string_view baseForm)
+    : Word(baseForm)
   {
 
   }
@@ -28,7 +28,7 @@ namespace RussianLanguageAnalyzer
 
   Adverb::operator std::string() const
   {
-    return _word;
+    return baseForm();
   }
 
   std::type_info const& Adverb::get_typeid() const
