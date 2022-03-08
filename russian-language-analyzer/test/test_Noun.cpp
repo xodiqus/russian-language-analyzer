@@ -44,6 +44,9 @@ BOOST_AUTO_TEST_CASE(setCase)
   word.set(Case::instrumental);   BOOST_TEST(word == "столом");
   word.set(Case::prepositional);  BOOST_TEST(word == "столе");
   word.set(Case::nominative);     BOOST_TEST(word == "стол");
+
+  int _;
+  (void)_;
 }
 
 BOOST_AUTO_TEST_SUITE_END();
