@@ -39,12 +39,12 @@ int main()
       << " (род: " << w->gender() << ", число: " << w->count() << ", падеж: " << w->case_() << ")" << std::endl;
   }
   {
-    auto w = dynamic_cast<Adjective const*>(s.object()->_child.get());
+    auto w = dynamic_cast<Adjective const*>(s.object()->child());
     std::cout << "Определение: " << *w
       << " (род: " << w->gender() << ", число: " << w->count() << ", падеж: " << w->case_() << ")" << std::endl;
   }
   {
-    auto w = dynamic_cast<Adverb const*>(s.predicate()->_child.get());
+    auto w = dynamic_cast<Adverb const*>(s.predicate()->child());
     std::cout << "Обстоятельство: " << *w << std::endl;
   }
 
