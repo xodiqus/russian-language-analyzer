@@ -45,8 +45,23 @@ BOOST_AUTO_TEST_CASE(setCase)
   word.set(Case::prepositional);  BOOST_TEST(word == "столе");
   word.set(Case::nominative);     BOOST_TEST(word == "стол");
 
-  int _;
-  (void)_;
-}
+  word = Noun("человек", Case::nominative, Count::single, Gender::m);
 
+  word.set(Case::genitive);       BOOST_TEST(word == "человека");//родительный
+  word.set(Case::dative);         BOOST_TEST(word == "человеку");//дательный
+  word.set(Case::accusative);     BOOST_TEST(word == "человек");//винительный(человека)
+  word.set(Case::instrumental);   BOOST_TEST(word == "человеком");//творительный
+  word.set(Case::prepositional);  BOOST_TEST(word == "человеке");//предложный
+  word.set(Case::nominative);     BOOST_TEST(word == "человек");//именительный
+
+  word = Noun("барракудам", Case::dative, Count::plural, Gender::f);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "барракуд");
+  word.set(Case::dative);         BOOST_TEST(word == "барракудам");
+  word.set(Case::accusative);     BOOST_TEST(word == "барракуд");
+  word.set(Case::instrumental);   BOOST_TEST(word == "барракудами");
+  word.set(Case::prepositional);  BOOST_TEST(word == "барракудах");
+  word.set(Case::nominative);     BOOST_TEST(word == "барракуды");
+
+}
 BOOST_AUTO_TEST_SUITE_END();
