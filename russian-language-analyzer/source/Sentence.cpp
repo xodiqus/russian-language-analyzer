@@ -50,7 +50,7 @@ namespace RussianLanguageAnalyzer
         } 
         else if (w->relates(*_predicate) == Relation::circumstance)
         {
-          _predicate->_child = std::move(w);
+          _predicate->child(w.release());
         }
       }
     }
@@ -63,7 +63,7 @@ namespace RussianLanguageAnalyzer
 
         if (w->relates(*_object) == Relation::definition)
         {
-          _object->_child = std::move(w);
+          _object->child(w.release());
         }
       }
     }

@@ -27,12 +27,18 @@ namespace RussianLanguageAnalyzer
 
   class Word
   {
+    friend class Sentence;
+
   private:
     std::string _baseForm;
+    std::unique_ptr<Word> _child;
 
   public:
-    Word(Word* w = nullptr) : _child(w) {  }
+    Word() = default;
     Word(std::string_view baseForm) noexcept;
+
+    Word(Word&&)            noexcept = default;
+    Word& operator=(Word&&) noexcept = default;
 
     virtual ~Word() noexcept = default;
 
@@ -50,12 +56,16 @@ namespace RussianLanguageAnalyzer
 
   public:
     std::string const& baseForm() const noexcept;
+    
+    Word const* child() const;
+    Word      * child();
+  private:
+    void        child(Word* w);
 
+  public:
     virtual operator std::string() const = 0;
 
     virtual std::type_info const& get_typeid() const = 0;
-
-    std::unique_ptr<Word> _child;
   };
 
   bool operator ==(Word const&, std::string_view);

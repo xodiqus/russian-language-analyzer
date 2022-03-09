@@ -85,4 +85,17 @@ namespace RussianLanguageAnalyzer
   {
     return _baseForm;
   }
+
+  Word const* Word::child() const
+  {
+    return _child.get();
+  }
+  Word* Word::child()
+  {
+    return _child.get();
+  }
+  void Word::child(Word* w)
+  {
+    _child.reset(w);
+  }
 }
