@@ -182,9 +182,7 @@ namespace RussianLanguageAnalyzer
       break;
     }
 
-    assert(ends != nullptr);
-
-    return r + ends->find(case_())->second;
+    return r + (ends != nullptr ? ends->find(case_())->second : "");
   }
 
   void Noun::set(Morphology::Case c)
