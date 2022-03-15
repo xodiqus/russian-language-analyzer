@@ -176,10 +176,64 @@ namespace RussianLanguageAnalyzer
 
           ends = &e;
         }
+
+        case Gender::f:
+        {
+          if (bool o_end = baseForm().ends_with("а"))
+          {
+             r = baseForm().substr(0, baseForm().length() - 1);
+
+             static const std::map<Case, const char*> e{
+              { Case::nominative,      "а" },
+              { Case::genitive,        "и" },
+              { Case::dative,          "е" },
+              { Case::accusative,      "у" },
+              { Case::instrumental,    "ой" },
+              { Case::prepositional,   "е" },
+             };
+
+             ends = &e;
+          }
+        }
       }
     }
     case Count::plural:
-      break;
+      switch (gender())
+      {
+         case Gender::m:
+         {
+           if (bool o_end = baseForm().ends_with("и"))
+           {
+                   r = baseForm().substr(0, baseForm().length() - 1);
+               
+               static const std::map<Case, const char*> e{
+              { Case::nominative,     "и" },
+              { Case::genitive,       "ей" },
+              { Case::dative,         "ам" },
+              { Case::accusative,     "и" },
+              { Case::instrumental,   "ами" },
+              { Case::prepositional,  "ах" },
+               };
+
+               ends = &e;
+           }
+           else if (baseForm().ends_with("ы"))
+           {
+               r = baseForm().substr(0, baseForm().length() - 1);
+
+               static const std::map<Case, const char*> e{
+             { Case::nominative,     "ы" },
+             { Case::genitive,       "" },
+             { Case::dative,         "ам" },
+             { Case::accusative,     "" },
+             { Case::instrumental,   "ами" },
+             { Case::prepositional,  "ах" },
+               };
+
+               ends = &e;
+           }
+         }
+      }
     }
 
     return r + (ends != nullptr ? ends->find(case_())->second : "");
