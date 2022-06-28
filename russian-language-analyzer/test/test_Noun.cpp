@@ -161,6 +161,96 @@ BOOST_AUTO_TEST_CASE(setCase)
   word.set(Case::instrumental);   BOOST_TEST(word == "курткой");
   word.set(Case::prepositional);  BOOST_TEST(word == "куртке");
   word.set(Case::nominative);     BOOST_TEST(word == "куртка");
+
+  word = Noun("окна", Case::nominative, Count::plural, Gender::n);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "окон");
+  word.set(Case::dative);         BOOST_TEST(word == "окнам");
+  word.set(Case::accusative);     BOOST_TEST(word == "окна");
+  word.set(Case::instrumental);   BOOST_TEST(word == "окнами");
+  word.set(Case::prepositional);  BOOST_TEST(word == "окнах");
+  word.set(Case::nominative);     BOOST_TEST(word == "окна");
+
+  word = Noun("платья", Case::nominative, Count::plural, Gender::f);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "платьев");
+  word.set(Case::dative);         BOOST_TEST(word == "платьям");
+  word.set(Case::accusative);     BOOST_TEST(word == "платья");
+  word.set(Case::instrumental);   BOOST_TEST(word == "платьями");
+  word.set(Case::prepositional);  BOOST_TEST(word == "платьях");
+  word.set(Case::nominative);     BOOST_TEST(word == "платья");
+
+  word = Noun("маска", Case::nominative, Count::single, Gender::f);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "маски");
+  word.set(Case::dative);         BOOST_TEST(word == "маске");
+  word.set(Case::accusative);     BOOST_TEST(word == "маску");
+  word.set(Case::instrumental);   BOOST_TEST(word == "маской");
+  word.set(Case::prepositional);  BOOST_TEST(word == "маске");
+  word.set(Case::nominative);     BOOST_TEST(word == "маска");
+
+  word = Noun("колёса", Case::nominative, Count::plural, Gender::n);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "колёс");
+  word.set(Case::dative);         BOOST_TEST(word == "колёсам");
+  word.set(Case::accusative);     BOOST_TEST(word == "колёса");
+  word.set(Case::instrumental);   BOOST_TEST(word == "колёсами");
+  word.set(Case::prepositional);  BOOST_TEST(word == "колёсах");
+  word.set(Case::nominative);     BOOST_TEST(word == "колёса");
+
+  word = Noun("карандаши", Case::nominative, Count::plural, Gender::m);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "карандашей");
+  word.set(Case::dative);         BOOST_TEST(word == "карандашам");
+  word.set(Case::accusative);     BOOST_TEST(word == "карандаши");
+  word.set(Case::instrumental);   BOOST_TEST(word == "карандашами");
+  word.set(Case::prepositional);  BOOST_TEST(word == "карандашах");
+  word.set(Case::nominative);     BOOST_TEST(word == "карандаши");
+
+  word = Noun("руки", Case::nominative, Count::plural, Gender::f);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "рук");
+  word.set(Case::dative);         BOOST_TEST(word == "рукам");
+  word.set(Case::accusative);     BOOST_TEST(word == "руки");
+  word.set(Case::instrumental);   BOOST_TEST(word == "руками");
+  word.set(Case::prepositional);  BOOST_TEST(word == "руках");
+  word.set(Case::nominative);     BOOST_TEST(word == "руки");
+
+  word = Noun("платки", Case::nominative, Count::plural, Gender::m);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "платков");
+  word.set(Case::dative);         BOOST_TEST(word == "платкам");
+  word.set(Case::accusative);     BOOST_TEST(word == "платки");
+  word.set(Case::instrumental);   BOOST_TEST(word == "платками");
+  word.set(Case::prepositional);  BOOST_TEST(word == "платках");
+  word.set(Case::nominative);     BOOST_TEST(word == "платки");
+
+  word = Noun("бананы", Case::nominative, Count::plural, Gender::m);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "бананов");
+  word.set(Case::dative);         BOOST_TEST(word == "бананам");
+  word.set(Case::accusative);     BOOST_TEST(word == "бананы");
+  word.set(Case::instrumental);   BOOST_TEST(word == "бананами");
+  word.set(Case::prepositional);  BOOST_TEST(word == "бананах");
+  word.set(Case::nominative);     BOOST_TEST(word == "бананы");
+
+  word = Noun("ракета", Case::nominative, Count::single, Gender::f);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "ракеты");
+  word.set(Case::dative);         BOOST_TEST(word == "ракете");
+  word.set(Case::accusative);     BOOST_TEST(word == "ракету");
+  word.set(Case::instrumental);   BOOST_TEST(word == "ракетой");
+  word.set(Case::prepositional);  BOOST_TEST(word == "ракете");
+  word.set(Case::nominative);     BOOST_TEST(word == "ракета");
+
+  word = Noun("кружки", Case::nominative, Count::plural, Gender::f);
+
+  word.set(Case::genitive);       BOOST_TEST(word == "кружек");
+  word.set(Case::dative);         BOOST_TEST(word == "кружкам");
+  word.set(Case::accusative);     BOOST_TEST(word == "кружки");
+  word.set(Case::instrumental);   BOOST_TEST(word == "кружками");
+  word.set(Case::prepositional);  BOOST_TEST(word == "кружках");
+  word.set(Case::nominative);     BOOST_TEST(word == "кружки");
 }
 
 BOOST_AUTO_TEST_SUITE_END();
