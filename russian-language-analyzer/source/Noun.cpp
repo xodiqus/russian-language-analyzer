@@ -197,43 +197,99 @@ namespace RussianLanguageAnalyzer
         }
       }
     }
+    
     case Count::plural:
-      switch (gender())
-      {
-         case Gender::m:
-         {
-           if (bool o_end = baseForm().ends_with("и"))
-           {
-                   r = baseForm().substr(0, baseForm().length() - 1);
-               
-               static const std::map<Case, const char*> e{
-              { Case::nominative,     "и" },
-              { Case::genitive,       "ей" },
+    {
+        switch (gender())
+        {
+        case Gender::m:
+        {
+            if (bool o_end = baseForm().ends_with("и"))
+            {
+                r = baseForm().substr(0, baseForm().length() - 1);
+
+                static const std::map<Case, const char*> e{
+               { Case::nominative,     "и" },
+               { Case::genitive,       "ей" },
+               { Case::dative,         "ам" },
+               { Case::accusative,     "и" },
+               { Case::instrumental,   "ами" },
+               { Case::prepositional,  "ах" },
+                };
+
+                ends = &e;
+                
+                break;
+            }
+            else if (baseForm().ends_with("ы"))
+            {
+                r = baseForm().substr(0, baseForm().length() - 1);
+
+                static const std::map<Case, const char*> e{
+              { Case::nominative,     "ы" },
+              { Case::genitive,       "" },
               { Case::dative,         "ам" },
-              { Case::accusative,     "и" },
+              { Case::accusative,     "" },
               { Case::instrumental,   "ами" },
               { Case::prepositional,  "ах" },
-               };
+                };
 
-               ends = &e;
-           }
-           else if (baseForm().ends_with("ы"))
-           {
-               r = baseForm().substr(0, baseForm().length() - 1);
+                ends = &e;
+            }
+        }
+        case Gender::n:
+        {
+            if (bool o_end = baseForm().ends_with("а"))
+            {
+                r = baseForm().substr(0, baseForm().length() - 1);
 
-               static const std::map<Case, const char*> e{
-             { Case::nominative,     "ы" },
-             { Case::genitive,       "" },
-             { Case::dative,         "ам" },
-             { Case::accusative,     "" },
-             { Case::instrumental,   "ами" },
-             { Case::prepositional,  "ах" },
-               };
+                static const std::map<Case, const char*> e{
+               { Case::nominative,     "а" },
+               { Case::genitive,       "" },
+               { Case::dative,         "ам" },
+               { Case::accusative,     "а" },
+               { Case::instrumental,   "ами" },
+               { Case::prepositional,  "ах" },
+                };
 
-               ends = &e;
-           }
-         }
-      }
+                ends = &e;
+            }
+        }
+        case Gender::f:
+        {
+            if (bool o_end = baseForm().ends_with("я"))
+            {
+                r = baseForm().substr(0, baseForm().length() - 1);
+
+                static const std::map<Case, const char*> e{
+               { Case::nominative,     "я" },
+               { Case::genitive,       "ев" },
+               { Case::dative,         "ям" },
+               { Case::accusative,     "я" },
+               { Case::instrumental,   "ями" },
+               { Case::prepositional,  "ях" },
+                };
+
+                ends = &e;
+            }
+            else if (bool o_end = baseForm().ends_with("и"))
+            {
+                r = baseForm().substr(0, baseForm().length() - 1);
+
+                static const std::map<Case, const char*> e{
+               { Case::nominative,     "и" },
+               { Case::genitive,       "" },
+               { Case::dative,         "ам" },
+               { Case::accusative,     "и" },
+               { Case::instrumental,   "ами" },
+               { Case::prepositional,  "ах" },
+                };
+
+                ends = &e;
+            }
+        }
+        }
+    }
     }
 
     return r + (ends != nullptr ? ends->find(case_())->second : "");
